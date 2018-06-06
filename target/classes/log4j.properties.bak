@@ -1,0 +1,59 @@
+
+#*************************************Log file' location**********************************************
+#Caution: The following property is the location where the system store the log file.
+#         Each environment has it own log file location. Therefore, be sure to set up the correct log 
+#		  location when you deploy the application to different environment. If you deploy the application on one environment,
+#         you need to comment the log location on other environment
+#
+# Default LINUX WAS7.0 logs directory
+#
+# 6) Individual developer's local PC: 
+# The log files will be created in C:\Program Files\IBM\SDP70\runtimes\base_v61\profiles\AppSrv01\logs\MailXML\healthmonitor.log
+hcldemoLog.file.path=logs/HCLDemo/HCLDemo.log
+#*************************************End log file' location******************************************
+
+#-------------------- Loggers ----------------------------#
+#
+
+# RootLogger -- Default catch-all.
+log4j.rootLogger=DEBUG, stdout, hcldemoLog
+
+log4j.logger.java.sql=ERROR
+log4j.logger.org.springframework=ERROR
+log4j.logger.org.springframework.jdbc.code=ERROR
+log4j.logger.org.displaytag=ERROR
+log4j.logger.org.springframework.orm.ibatis=DEBUG
+log4j.logger.com.usps.postalone.healthmonitor=DEBUG
+#log Ibatis information - begin
+log4j.logger.com.ibatis=DEBUG
+log4j.logger.com.ibatis.common.jdbc.SimpleDataSource=DEBUG
+log4j.logger.com.ibatis.sqlmap.engine.cache.CacheModel=DEBUG
+log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientImpl=DEBUG
+log4j.logger.com.ibatis.sqlmap.engine.builder.xml.SqlMapParser=DEBUG
+log4j.logger.com.ibatis.common.util.StopWatch=DEBUG
+log4j.logger.java.sql.Connection=DEBUG
+log4j.logger.java.sql.Statement=DEBUG
+log4j.logger.java.sql.PreparedStatement=DEBUG
+log4j.logger.java.sql.ResultSet=DEBUG
+#log Ibatis information - end
+
+#-------------------- Appenders ----------------------------#
+#
+
+#Configure Appender 'stdout'
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d %5p %c.%M() at line :%L - %m%n
+
+#Configure Appender 'hcldemoLog'
+log4j.appender.hcldemoLog=org.apache.log4j.RollingFileAppender
+log4j.appender.hcldemoLog.File=${hcldemoLog.file.path}
+log4j.appender.hcldemoLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.hcldemoLog.layout.ConversionPattern=%d %5p %c.%M() at line :%L - %m%n
+log4j.appender.hcldemoLog.MaxFileSize=2048KB
+log4j.appender.hcldemoLog.MaxBackupIndex=10
+
+#---------------------------------------------------------#
+
+
