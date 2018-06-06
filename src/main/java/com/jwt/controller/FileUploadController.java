@@ -111,7 +111,7 @@ public class FileUploadController {
 			return new ResponseEntity<FileInfo>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+	 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	public ResponseEntity<FileInfo> delete(@RequestParam("id") String fileId) {
 		if (fileId !=null) {
